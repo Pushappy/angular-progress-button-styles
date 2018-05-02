@@ -75,7 +75,7 @@
                 'pbDirection': '@',
                 'pbProfile': '@'
             },
-            template: '<span class="content" ng-transclude></span>' + 
+            template: '<span class="content" ng-transclude>hejhooooo</span>' + 
                       '<span class="progress">' +
                           '<span class="progress-inner" ng-style="progressStyles" ng-class="{ notransition: !allowProgressTransition }"></span>' +
                       '</span>',
