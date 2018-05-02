@@ -8,18 +8,18 @@
  * http:/flatlogic.com
  */
 'use strict';
-(function(angular) {
+(function (angular) {
 
     function whichTransitionEnd(element) {
         var transitions = {
-            'WebkitTransition' : 'webkitTransitionEnd',
-            'MozTransition'    : 'transitionend',
-            'OTransition'      : 'oTransitionEnd otransitionend',
-            'transition'       : 'transitionend'
+            'WebkitTransition': 'webkitTransitionEnd',
+            'MozTransition': 'transitionend',
+            'OTransition': 'oTransitionEnd otransitionend',
+            'transition': 'transitionend'
         };
 
-        for(var t in transitions){
-            if(element.style[t] !== undefined){
+        for (var t in transitions) {
+            if (element.style[t] !== undefined) {
                 return transitions[t];
             }
         }
@@ -38,8 +38,8 @@
             direction: 'horizontal',
             randomProgress: true
         };
-        
-        this.profile = function(profileName, options) {
+
+        this.profile = function (profileName, options) {
             if (arguments.length == 1) { // Means default configuration
                 if (defaultProfile) throw Error('Default profile already set.');
                 defaultProfile = profileName;
@@ -49,9 +49,9 @@
             }
         };
 
-        this.$get = function() {
+        this.$get = function () {
             return {
-                getProfile: function(profileName) {
+                getProfile: function (profileName) {
                     if (profileName && profiles[profileName]) {
                         return profiles[profileName];
                     } else {
@@ -75,12 +75,12 @@
                 'pbDirection': '@',
                 'pbProfile': '@'
             },
-            template: '<span class="content" ng-transclude>hejhooooo</span>' + 
-                      '<span class="progress">' +
-                          '<span class="progress-inner" ng-style="progressStyles" ng-class="{ notransition: !allowProgressTransition }"></span>' +
-                      '</span>',
-            controller: function() {},
-            link: function($scope, $element, $attrs) {
+            template: '<i class="fas fa-check"></i><span class="content" ng-transclude></span><i class="fas fa-ban"></i>' +
+                '<span class="progress">' +
+                '<span class="progress-inner" ng-style="progressStyles" ng-class="{ notransition: !allowProgressTransition }"></span>' +
+                '</span>',
+            controller: function () { },
+            link: function ($scope, $element, $attrs) {
                 _configure();
                 var transitionEndEventName = whichTransitionEnd($element[0]);
                 var progressProperty = $scope.pbDirection == 'vertical' ? 'height' : 'width';
@@ -100,12 +100,12 @@
                 $element.addClass('progress-button-dir-' + $scope.pbDirection);
                 $element.addClass('progress-button-style-' + $scope.pbStyle);
 
-                $scope.$watch('disabled', function(newValue) {
+                $scope.$watch('disabled', function (newValue) {
                     $element.toggleClass('disabled', newValue);
                 });
 
-                $element.on('click', function() {
-                    $scope.$apply(function() {
+                $element.on('click', function () {
+                    $scope.$apply(function () {
                         if ($scope.disabled) return;
                         $scope.disabled = true;
                         $element.addClass('state-loading');
@@ -140,11 +140,11 @@
                     } else {
                         $scope.pbDirection = 'vertical';
                     }
-                    
+
                     $scope.pbPerspective = $scope.pbStyle.indexOf('rotate') == 0 || $scope.pbStyle.indexOf('flip-open') == 0;
-                    $scope.pbRandomProgress = $attrs.pbRandomProgress 
-                                    ? $attrs.pbRandomProgress !== 'false' : 
-                                    (profile.randomProgress || true);
+                    $scope.pbRandomProgress = $attrs.pbRandomProgress
+                        ? $attrs.pbRandomProgress !== 'false' :
+                        (profile.randomProgress || true);
                 }
 
                 function setProgress(val) {
@@ -153,14 +153,14 @@
 
                 function runProgressInterval() {
                     var progress = 0;
-                    return $interval(function() {
+                    return $interval(function () {
                         progress += (1 - progress) * Math.random() * 0.5;
                         setProgress(progress);
                     }, 200);
                 }
 
                 function enable() {
-                    $scope.$apply(function() {
+                    $scope.$apply(function () {
                         $scope.disabled = false;
                     });
                 }
@@ -169,9 +169,9 @@
 
                     function onOpacityTransitionEnd(ev) {
                         // JQuery event may no have propertyName, but the originalEvent does
-                        if (ev.propertyName !== 'opacity' && (! ev.originalEvent || ev.originalEvent.propertyName !== 'opacity') ) return;
+                        if (ev.propertyName !== 'opacity' && (!ev.originalEvent || ev.originalEvent.propertyName !== 'opacity')) return;
                         $element.off(transitionEndEventName, onOpacityTransitionEnd);
-                        $scope.$apply(function() {
+                        $scope.$apply(function () {
                             $scope.allowProgressTransition = false;
                             setProgress(0);
                             $scope.progressStyles.opacity = 1;
@@ -186,7 +186,7 @@
                     if (typeof status === 'number') {
                         var statusClass = status >= 0 ? 'state-success' : 'state-error';
                         $element.addClass(statusClass);
-                        setTimeout(function() {
+                        setTimeout(function () {
                             $element.removeClass(statusClass);
                             enable();
                         }, 1500); // TODO: fetch it from the options
