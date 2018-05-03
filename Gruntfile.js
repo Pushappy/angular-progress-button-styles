@@ -16,24 +16,24 @@ module.exports = function (grunt) {
                 }
             }
         },
-        cssmin: {
-            options: {
-                shorthandCompacting: false,
-                roundingPrecision: -1
-            },
-            target: {
-                files: {
-                    'dist/angular-progress-button-styles.min.css': ['dist/angular-progress-button-styles.css']
-                }
-            }
-        },
-        uglify: {
-            main: {
-                files: {
-                    'dist/angular-progress-button-styles.min.js': ['dist/angular-progress-button-styles.js']
-                }
-            }
-        },
+        // cssmin: {
+        //     options: {
+        //         shorthandCompacting: false,
+        //         roundingPrecision: -1
+        //     },
+        //     target: {
+        //         files: {
+        //             'dist/angular-progress-button-styles.min.css': ['dist/angular-progress-button-styles.css']
+        //         }
+        //     }
+        // },
+        // uglify: {
+        //     main: {
+        //         files: {
+        //             'dist/angular-progress-button-styles.min.js': ['dist/angular-progress-button-styles.js']
+        //         }
+        //     }
+        // },
         copy: {
             js: {
                 src: 'js/angular-progress-button-styles.js',
@@ -55,9 +55,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
-    grunt.registerTask('styles', ['sass:dist', 'cssmin']);
+    grunt.registerTask('styles', ['sass:dist']);
 
-    grunt.registerTask('scripts', ['copy:js','copy:files', 'uglify:main']);
+    grunt.registerTask('scripts', ['copy:js','copy:files']);
 
     grunt.registerTask('default', ['scripts', 'styles']);
 
