@@ -1,4 +1,4 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
     // Project configuration.
     grunt.initConfig({
@@ -38,6 +38,12 @@ module.exports = function(grunt) {
             js: {
                 src: 'js/angular-progress-button-styles.js',
                 dest: 'dist/angular-progress-button-styles.js'
+            },
+            files: {
+                cwd: 'assets',  // set working folder / root to copy
+                src: '**/*',           // copy all files and subfolders
+                dest: 'dist/assets',    // destination folder
+                expand: true           // required when using cwd
             }
         }
     });
@@ -51,7 +57,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('styles', ['sass:dist', 'cssmin']);
 
-    grunt.registerTask('scripts', ['copy:js', 'uglify:main']);
+    grunt.registerTask('scripts', ['copy:js','copy:files', 'uglify:main']);
 
     grunt.registerTask('default', ['scripts', 'styles']);
 

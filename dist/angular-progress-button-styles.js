@@ -75,7 +75,7 @@
                 'pbDirection': '@',
                 'pbProfile': '@'
             },
-            template: '<i class="fas fa-check"></i><span class="content" ng-transclude></span><i class="fas fa-ban"></i>' +
+            template: '<span class="content" ng-transclude></span>' +
                 '<span class="progress">' +
                 '<span class="progress-inner" ng-style="progressStyles" ng-class="{ notransition: !allowProgressTransition }"></span>' +
                 '</span>',

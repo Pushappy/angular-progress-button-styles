@@ -1,4 +1,5 @@
 /* General styles for all types of buttons */
+
 .progress-button {
     position: relative;
     display: inline-block;
@@ -12,26 +13,26 @@
     font-size: 1em;
     line-height: 4;
     cursor: pointer;
-
-    *, *:after, *::before {
+    *,
+    *:after,
+    *::before {
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
     }
-
     .notransition {
         -webkit-transition: none !important;
         transition: none !important;
     }
-
-    &[disabled], &.disabled {
+    &[disabled],
+    &.disabled {
         cursor: default;
     }
-
     .content {
         position: relative;
         display: block;
-        &:before, &:after {
+        &:before,
+        &:after {
             position: absolute;
             right: 20px;
             color: @progressButtonIconsColor;
@@ -40,30 +41,25 @@
             -webkit-transition: opacity 0.3s 0.3s;
             transition: opacity 0.3s 0.3s;
         }
-
         &:before {
-            content: @progressButtonSuccessIcon;
+            content: url("data:image/svg+xml,%3Csvg width='512' height='512' xmlns='http://www.w3.org/2000/svg' xmlns:svg='http://www.w3.org/2000/svg' class='svg-inline--fa fa-check fa-w-16'%3E%3Cg%3E%3Ctitle%3ELayer 1%3C/title%3E%3Cpath id='svg_1' d='m173.898,439.404l-166.4,-166.4c-9.997,-9.997 -9.997,-26.206 0,-36.204l36.203,-36.204c9.997,-9.998 26.207,-9.998 36.204,0l112.095,112.094l240.095,-240.094c9.997,-9.997 26.207,-9.997 36.204,0l36.203,36.204c9.997,9.997 9.997,26.206 0,36.204l-294.4,294.401c-9.998,9.997 -26.207,9.997 -36.204,-0.001z' fill='currentColor'/%3E%3C/g%3E%3C/svg%3E");
         }
-
         &:after {
-            content: @progressButtonErrorIcon;
+            content: url("data:image/svg+xml,%3Csvg width='512' height='512' xmlns='http://www.w3.org/2000/svg' xmlns:svg='http://www.w3.org/2000/svg' class='svg-inline--fa fa-check fa-w-16'%3E%3Cg%3E%3Ctitle%3ELayer 1%3C/title%3E%3Cpath id='svg_1' d='m173.898,439.404l-166.4,-166.4c-9.997,-9.997 -9.997,-26.206 0,-36.204l36.203,-36.204c9.997,-9.998 26.207,-9.998 36.204,0l112.095,112.094l240.095,-240.094c9.997,-9.997 26.207,-9.997 36.204,0l36.203,36.204c9.997,9.997 9.997,26.206 0,36.204l-294.4,294.401c-9.998,9.997 -26.207,9.997 -36.204,-0.001z' fill='currentColor'/%3E%3C/g%3E%3C/svg%3E");
         }
     }
-
-    &.state-success .content:before, &.state-error .content:after {
+    &.state-success .content:before,
+    &.state-error .content:after {
         opacity: 1;
     }
-
     .progress {
         background: @progressButtonProgressColor;
     }
-
     .progress-inner {
         position: absolute;
         left: 0;
         background: @progressButtonProgressInnerColor;
     }
-
     &-dir-horizontal {
         .progress-inner {
             top: 0;
@@ -73,7 +69,6 @@
             transition: width 0.3s, opacity 0.3s;
         }
     }
-
     &-dir-vertical {
         .progress-inner {
             bottom: 0;
@@ -83,7 +78,6 @@
             transition: height 0.3s, opacity 0.3s;
         }
     }
-
     /* Necessary 3d styles for buttons with perspective */
     &-perspective {
         position: relative;
@@ -92,11 +86,11 @@
         background: transparent;
         -webkit-perspective: 900px;
         perspective: 900px;
-
-        .content, .progress {
-            outline: 1px solid rgba(0,0,0,0); /* Smoothen jagged edges in FF */
+        .content,
+        .progress {
+            outline: 1px solid rgba(0, 0, 0, 0);
+            /* Smoothen jagged edges in FF */
         }
-
         .progress-wrap {
             display: block;
             -webkit-transition: -webkit-transform 0.2s;
@@ -104,11 +98,9 @@
             -webkit-transform-style: preserve-3d;
             transform-style: preserve-3d;
         }
-
         .content {
             padding: 0 60px;
             background: @progressButtonBackground;
         }
-
     }
 }
